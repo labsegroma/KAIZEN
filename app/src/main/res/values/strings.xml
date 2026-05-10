@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">KAI</string>
+    <string name="navigation_drawer_open">Abrir cajon de navegacion</string>
+    <string name="navigation_drawer_close">Cerrar cajon de navegacion</string>
+    <string name="nav_header_title">KAI</string>
+    <string name="nav_header_subtitle">Crecimiento Emocional</string>
+    <string name="action_settings">Ajustes</string>
+
+    <!-- Menu Navegacion -->
+    <string name="menu_home">Inicio</string>
+    <string name="menu_habitos">Habitos</string>
+    <string name="menu_kai">Kai</string>
+    <string name="menu_perfil">Perfil</string>
+    <string name="menu_login">Cerrar Sesion</string>
+
+    <!-- Pantalla Login -->
+    <string name="hint_email">Correo electronico</string>
+    <string name="hint_password">Contrasenia</string>
+    <string name="btn_login">Iniciar Sesion</string>
+    <string name="btn_register">Registrarse</string>
+
+    <!-- Pantalla Inicio -->
+    <string name="saludo_usuario">Hola, %1$s!</string>
+    <string name="estado_kai">Kai esta %1$s</string>
+    <string name="xp_total">XP Total: %1$d</string>
+    <string name="racha_actual">Racha: %1$d dias</string>
+    <string name="titulo_habitos_hoy">Habitos de hoy</string>
+
+    <!-- Pantalla Kai -->
+    <string name="nivel_kai">Nivel %1$d</string>
+    <string name="emocion_kai">Estado: %1$s</string>
+    <string name="mensaje_kai">Kai dice: %1$s</string>
+
+    <!-- Pantalla Perfil -->
+    <string name="perfil_nombre">Nombre: %1$s</string>
+    <string name="perfil_email">Email: %1$s</string>
+    <string name="perfil_nivel">Nivel General: %1$d</string>
+
+    <!-- Otros -->
+    <string name="btn_completar">Completar</string>
+    <string name="categoria_habito">Categoria: %1$s</string>
+    <string name="permiso_ubicacion_necesario">Se requiere permiso de ubicacion para funciones del sistema.</string>
+</resources>
