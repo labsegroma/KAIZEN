@@ -12,6 +12,7 @@
     <string name="menu_kai">Kai</string>
     <string name="menu_perfil">Perfil</string>
     <string name="menu_login">Cerrar Sesion</string>
+    <string name="menu_inicio">Inicio</string>
 
     <!-- Pantalla Login -->
     <string name="hint_email">Correo electronico</string>

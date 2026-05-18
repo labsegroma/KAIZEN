@@ -1,4 +1,4 @@
-package com.roma.kai;
+package com.roma.kai.ui.inicio;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -16,6 +16,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
+import com.roma.kai.R;
 import com.roma.kai.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = navHostFragment.getNavController();
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_habitos, R.id.nav_kai, R.id.nav_perfil)
+                R.id.nav_inicio, R.id.nav_perfil)
                 .setOpenableLayout(drawer)
                 .build();
 
