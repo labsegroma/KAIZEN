@@ -52,6 +52,25 @@
     <string name="nivel_kai">Nivel %1$d</string>
     <string name="emocion_kai">Estado: %1$s</string>
     <string name="mensaje_kai">Kai dice: %1$s</string>
+    <string name="titulo_tu_kai">Tu Kai</string>
+    <string name="label_etapa">Etapa: %1$s</string>
+    <string name="valor_etapa_default">Cachorro</string>
+    <string name="label_medidor_vigor">Medidor de Vigor (Energía)</string>
+    <string name="desc_medidor_vigor">%1$d/100 - %2$s (Mejora con hábitos)</string>
+    <string name="vigor_energico">Enérgico</string>
+    <string name="label_personalidad">Personalidad</string>
+    <string name="valor_personalidad_default">Sabiduría</string>
+    <string name="label_mensaje_emocional">Mensaje Emocional:</string>
+    <string name="mensaje_emocional_default">¡Me siento curioso y listo para aprender contigo, %1$s!</string>
+    <string name="titulo_radar">Gráfico de Personalidad (Radar)</string>
+    <string name="label_sabiduria">Sabiduría</string>
+    <string name="label_curiosidad">Curiosidad</string>
+    <string name="label_cuidado_fisico">Cuidado Físico</string>
+    <string name="label_creatividad">Creatividad</string>
+    <string name="label_alegria">Alegría</string>
+    <string name="label_predominante">Categoría Predominante: %1$s (%2$d XP)</string>
+    <string name="label_menos_avanzada">Categoría Menos Avanzada: %1$s (%2$d XP)</string>
+    <string name="label_progreso_total">Progreso Total: %1$d / %2$d\nhábitos completados hoy</string>
 
     <!-- Pantalla Perfil -->
     <string name="perfil_nombre">Nombre: %1$s</string>
@@ -61,6 +80,15 @@
     <string name="btn_editar_perfil">Editar Perfil</string>
     <string name="btn_cambiar_password">Cambiar Contraseña</string>
     <string name="avatar_desc">Foto de perfil</string>
+
+    <!-- Pantalla Detalle Hábito -->
+    <string name="titulo_detalle">Detalle: %1$s</string>
+    <string name="label_dias_exitosos">Cantidad de Días Exitosos</string>
+    <string name="label_racha_actual">Racha Actual</string>
+    <string name="btn_dar_baja">Dar de Baja Hábito</string>
+    <string name="btn_ver_catalogo">Ver Catálogo de Hábitos</string>
+    <string name="label_completado">Completado</string>
+    <string name="label_no_completado">No Completado</string>
 
     <!-- Otros -->
     <string name="btn_completar">Completar</string>

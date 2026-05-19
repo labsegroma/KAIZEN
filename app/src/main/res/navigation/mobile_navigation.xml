@@ -34,4 +34,31 @@
         android:name="com.roma.kai.ui.inicio.InicioFragment"
         android:label="@string/menu_inicio"
         tools:layout="@layout/fragment_inicio" />
+    <fragment
+        android:id="@+id/nav_habitos"
+        android:name="com.roma.kai.ui.habitos.HabitosFragment"
+        android:label="@string/menu_habitos"
+        tools:layout="@layout/fragment_habitos">
+        <action
+            android:id="@+id/action_nav_habitos_to_nav_seleccion_habitos"
+            app:destination="@id/nav_seleccion_habitos" />
+        <action
+            android:id="@+id/action_nav_habitos_to_nav_detalle_habito"
+            app:destination="@id/nav_detalle_habito" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_seleccion_habitos"
+        android:name="com.roma.kai.ui.habitos.SeleccionHabitosFragment"
+        android:label="Elegir Hábitos"
+        tools:layout="@layout/fragment_seleccion_habitos" />
+    <fragment
+        android:id="@+id/nav_detalle_habito"
+        android:name="com.roma.kai.ui.habitos.DetalleHabitoFragment"
+        android:label="Detalle de Hábito"
+        tools:layout="@layout/fragment_detalle_habito" />
+    <fragment
+        android:id="@+id/nav_kai"
+        android:name="com.roma.kai.ui.kai.TuKaiFragment"
+        android:label="@string/menu_kai"
+        tools:layout="@layout/fragment_tu_kai" />
 </navigation>

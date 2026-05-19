@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient_light_green"
+    tools:context=".ui.habitos.DetalleHabitoFragment">
+
+    <!-- Header Section -->
+    <ImageButton
+        android:id="@+id/btn_back_detalle"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/back_button_desc"
+        android:src="@drawable/ic_launcher_foreground"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="#1B5E50" />
+
+    <ImageView
+        android:id="@+id/img_logo_detalle"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/logo_verde_removebg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_detalle_habito_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:textColor="#1B5E50"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_logo_detalle"
+        tools:text="Detalle: Tomar Agua" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_nav_dummy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_detalle_habito_title">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Habit Main Info Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/img_detalle_icon"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/ic_gallery_black_24dp"
+                            app:tint="#1B5E50" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/txt_detalle_nombre"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#0D332B"
+                                android:textSize="22sp"
+                                android:textStyle="bold"
+                                tools:text="Tomar Agua" />
+
+                            <TextView
+                                android:id="@+id/txt_detalle_categoria"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#546E7A"
+                                android:textSize="16sp"
+                                tools:text="Vitalidad" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="#E0E0E0" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_dias_exitosos"
+                                android:textColor="#757575"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:id="@+id/txt_detalle_exitosos"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#0D332B"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                tools:text="32 Días" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_racha_actual"
+                                android:textColor="#757575"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:id="@+id/txt_detalle_racha"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#0D332B"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                tools:text="6 Días" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Calendar Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:src="@drawable/ic_launcher_foreground"
+                            app:tint="#1B5E50" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="Mayo 14, 2026"
+                            android:textColor="#0D332B"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <ImageButton
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:src="@drawable/ic_launcher_foreground"
+                            app:tint="#1B5E50" />
+                    </LinearLayout>
+
+                    <GridLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:columnCount="7">
+
+                        <TextView android:layout_columnWeight="1" android:gravity="center" android:text="L" android:textColor="#FFFFFF" android:background="#1B5E50" android:padding="8dp"/>
+                        <TextView android:layout_columnWeight="1" android:gravity="center" android:text="M" android:textColor="#FFFFFF" android:background="#1B5E50" android:padding="8dp"/>
+                        <TextView android:layout_columnWeight="1" android:gravity="center" android:text="T" android:textColor="#FFFFFF" android:background="#1B5E50" android:padding="8dp"/>
+                        <TextView android:layout_columnWeight="1" android:gravity="center" android:text="W" android:textColor="#FFFFFF" android:background="#1B5E50" android:padding="8dp"/>
+                        <TextView android:layout_columnWeight="1" android:gravity="center" android:text="D" android:textColor="#FFFFFF" android:background="#1B5E50" android:padding="8dp"/>
+                        <TextView android:layout_columnWeight="1" android:gravity="center" android:text="V" android:textColor="#FFFFFF" android:background="#1B5E50" android:padding="8dp"/>
+                        <TextView android:layout_columnWeight="1" android:gravity="center" android:text="S" android:textColor="#FFFFFF" android:background="#1B5E50" android:padding="8dp"/>
+                    </GridLayout>
+
+                    <!-- Dummy Calendar Grid Content -->
+                    <GridLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:columnCount="7"
+                        android:layout_marginTop="8dp">
+                        <!-- Simplified placeholder for days -->
+                        <ImageView android:layout_columnWeight="1" android:src="@drawable/ic_gallery_black_24dp" android:padding="8dp" app:tint="#1B5E50" />
+                        <ImageView android:layout_columnWeight="1" android:src="@drawable/ic_gallery_black_24dp" android:padding="8dp" app:tint="#1B5E50" />
+                        <ImageView android:layout_columnWeight="1" android:src="@drawable/ic_gallery_black_24dp" android:padding="8dp" app:tint="#1B5E50" />
+                        <ImageView android:layout_columnWeight="1" android:src="@drawable/ic_gallery_black_24dp" android:padding="8dp" app:tint="#1B5E50" />
+                        <ImageView android:layout_columnWeight="1" android:src="@drawable/ic_gallery_black_24dp" android:padding="8dp" app:tint="#1B5E50" />
+                        <ImageView android:layout_columnWeight="1" android:src="@drawable/ic_gallery_black_24dp" android:padding="8dp" app:tint="#1B5E50" />
+                        <ImageView android:layout_columnWeight="1" android:src="@drawable/ic_gallery_black_24dp" android:padding="8dp" app:tint="#1B5E50" />
+                    </GridLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:drawableStartCompat="@drawable/ic_gallery_black_24dp"
+                            android:drawablePadding="8dp"
+                            android:text="@string/label_completado"
+                            android:textColor="#0D332B"
+                            app:drawableTint="#1B5E50" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            app:drawableStartCompat="@drawable/ic_gallery_black_24dp"
+                            android:drawablePadding="8dp"
+                            android:text="@string/label_no_completado"
+                            android:textColor="#546E7A"
+                            app:drawableTint="#E0E0E0" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Bottom Buttons -->
+            <Button
+                android:id="@+id/btn_dar_baja_habito"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/btn_dar_baja"
+                android:textAllCaps="false"
+                android:textColor="#0D332B"
+                app:cornerRadius="16dp"
+                app:icon="@drawable/ic_camera_black_24dp"
+                app:iconTint="#B71C1C"
+                app:strokeColor="#E0E0E0" />
+
+            <Button
+                android:id="@+id/btn_ver_catalogo_desde_detalle"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="24dp"
+                android:text="@string/btn_ver_catalogo"
+                android:textAllCaps="false"
+                android:textColor="#0D332B"
+                app:cornerRadius="16dp"
+                app:icon="@drawable/ic_launcher_foreground"
+                app:iconGravity="end"
+                app:iconTint="#1B5E50"
+                app:strokeColor="#E0E0E0" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Visual dummy for bottom nav consistency -->
+    <View
+        android:id="@+id/bottom_nav_dummy"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
