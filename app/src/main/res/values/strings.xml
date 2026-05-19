@@ -8,24 +8,45 @@
 
     <!-- Menu Navegacion -->
     <string name="menu_home">Inicio</string>
-    <string name="menu_habitos">Habitos</string>
-    <string name="menu_kai">Kai</string>
-    <string name="menu_perfil">Perfil</string>
-    <string name="menu_login">Cerrar Sesion</string>
+    <string name="menu_habitos">Hábitos</string>
+    <string name="menu_kai">Tu Kai</string>
+    <string name="menu_perfil">Mi Perfil</string>
+    <string name="menu_logout">Cerrar Sesión</string>
     <string name="menu_inicio">Inicio</string>
+    <string name="nav_header_label">Navegación</string>
 
     <!-- Pantalla Login -->
-    <string name="hint_email">Correo electronico</string>
-    <string name="hint_password">Contrasenia</string>
-    <string name="btn_login">Iniciar Sesion</string>
+    <string name="titulo_login">Iniciar sesión en KAI</string>
+    <string name="hint_email">ejemplo@kai.com</string>
+    <string name="label_email">Correo electrónico</string>
+    <string name="hint_password">********</string>
+    <string name="label_password">Contraseña</string>
+    <string name="btn_login">Iniciar Sesión</string>
     <string name="btn_register">Registrarse</string>
+    <string name="olvido_password">¿Olvidaste tu contraseña?</string>
+
+    <!-- Pantalla Registro -->
+    <string name="titulo_registro">Crear cuenta</string>
+    <string name="label_nombre">Nombre completo</string>
+    <string name="hint_nombre">Juan Pérez</string>
+    <string name="label_confirmar_password">Confirmar contraseña</string>
+    <string name="btn_crear_cuenta">CREAR CUENTA</string>
+    <string name="volver_login">Ya tengo una cuenta. Volver al Login.</string>
 
     <!-- Pantalla Inicio -->
     <string name="saludo_usuario">Hola, %1$s!</string>
     <string name="estado_kai">Kai esta %1$s</string>
     <string name="xp_total">XP Total: %1$d</string>
     <string name="racha_actual">Racha: %1$d dias</string>
-    <string name="titulo_habitos_hoy">Habitos de hoy</string>
+    <string name="titulo_habitos_hoy">Hábitos de Hoy</string>
+    <string name="mensaje_motivacional_default">Hoy te ves con energía.</string>
+    <string name="label_experiencia">Experiencia</string>
+    <string name="label_racha">Racha</string>
+    <string name="valor_xp_default">120 XP</string>
+    <string name="valor_racha_default">6 Días</string>
+    <string name="habito_leer">Leer</string>
+    <string name="habito_agua">Tomar agua</string>
+    <string name="habito_caminar">Caminar</string>
 
     <!-- Pantalla Kai -->
     <string name="nivel_kai">Nivel %1$d</string>
@@ -36,9 +57,19 @@
     <string name="perfil_nombre">Nombre: %1$s</string>
     <string name="perfil_email">Email: %1$s</string>
     <string name="perfil_nivel">Nivel General: %1$d</string>
+    <string name="label_nivel">Nivel</string>
+    <string name="btn_editar_perfil">Editar Perfil</string>
+    <string name="btn_cambiar_password">Cambiar Contraseña</string>
+    <string name="avatar_desc">Foto de perfil</string>
 
     <!-- Otros -->
     <string name="btn_completar">Completar</string>
     <string name="categoria_habito">Categoria: %1$s</string>
     <string name="permiso_ubicacion_necesario">Se requiere permiso de ubicacion para funciones del sistema.</string>
+
+    <!-- Pantalla Splash / Base -->
+    <string name="bienvenida_kai">¡Bienvenido a KAI!</string>
+    <string name="subtitulo_kai">La App de tu Amigo Virtual</string>
+    <string name="verificando_sesion">Verificando sesión…</string>
+    <string name="back_button_desc">Volver</string>
 </resources>

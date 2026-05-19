@@ -4,11 +4,12 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.roma.kai.network.ApiService;
 import com.roma.kai.network.RetrofitClient;
 import com.roma.kai.session.SessionManager;
-import com.roma.kai.utils.SPManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -17,16 +18,28 @@ import retrofit2.Response;
 public class BaseViewModel extends AndroidViewModel {
     private SessionManager sessionManager;
     private ApiService apiService;
+
+    private MutableLiveData<Boolean> navigateToHome = new MutableLiveData<>();
+    private MutableLiveData<Boolean> navigateToLogin = new MutableLiveData<>();
+
     public BaseViewModel(@NonNull Application application) {
         super(application);
         apiService = RetrofitClient.getService(application);
         sessionManager = SessionManager.getInstance(application);
     }
 
+    public LiveData<Boolean> getNavigateToHome() {
+        return navigateToHome;
+    }
+
+    public LiveData<Boolean> getNavigateToLogin() {
+        return navigateToLogin;
+    }
+
     public void verificarSession() {
         String token = sessionManager.getToken();
-        if(token == null || token.isEmpty()) {
-            // crear un intent y enviar al LOGIN
+        if (token == null || token.isEmpty()) {
+            navigateToLogin.setValue(true);
             return;
         }
 
@@ -34,18 +47,20 @@ public class BaseViewModel extends AndroidViewModel {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                if(response.isSuccessful()) {
-                    //crear un intent y enviar al HOME
+                if (response.isSuccessful()) {
+                    navigateToHome.setValue(true);
                 } else {
                     sessionManager.clearSession();
-                    //crear un intent y enviar al LOGIN
+                    navigateToLogin.setValue(true);
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable throwable) {
+                // En caso de error de red, podrías decidir si ir a login o reintentar
+                // Por ahora, asumimos que si falla la verificación, debe loguearse de nuevo
                 sessionManager.clearSession();
-                //crear un intent y enviar al LOGIN
+                navigateToLogin.setValue(true);
             }
         });
     }

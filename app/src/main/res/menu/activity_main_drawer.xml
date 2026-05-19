@@ -6,28 +6,28 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_inicio"
-            android:icon="@android:drawable/ic_menu_today"
+            android:icon="@drawable/ic_launcher_foreground"
             android:title="@string/menu_inicio" />
         <item
             android:id="@+id/nav_habitos"
-            android:icon="@android:drawable/ic_menu_sort_by_size"
+            android:icon="@drawable/ic_gallery_black_24dp"
             android:title="@string/menu_habitos" />
         <item
             android:id="@+id/nav_kai"
-            android:icon="@android:drawable/ic_menu_gallery"
+            android:icon="@drawable/jugueton"
             android:title="@string/menu_kai" />
         <item
             android:id="@+id/nav_perfil"
-            android:icon="@android:drawable/ic_menu_myplaces"
+            android:icon="@drawable/ic_camera_black_24dp"
             android:title="@string/menu_perfil" />
     </group>
 
-    <item android:title="Cuenta">
+    <item android:title="">
         <menu>
             <item
-                android:id="@+id/nav_login"
-                android:icon="@android:drawable/ic_menu_close_clear_cancel"
-                android:title="@string/menu_login" />
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_settings_black_24dp"
+                android:title="@string/menu_logout" />
         </menu>
     </item>
 </menu>

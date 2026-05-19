@@ -1,5 +1,6 @@
 package com.roma.kai.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -11,6 +12,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.roma.kai.R;
 import com.roma.kai.databinding.ActivityBaseBinding;
+import com.roma.kai.ui.inicio.MainActivity;
+import com.roma.kai.ui.login.LoginActivity;
 
 public class BaseActivity extends AppCompatActivity {
     private ActivityBaseBinding binding;
@@ -31,6 +34,25 @@ public class BaseActivity extends AppCompatActivity {
             return insets;
         });
 
+        setupObservers();
+        
+        // Iniciamos la verificación de sesión
         baseVM.verificarSession();
+    }
+
+    private void setupObservers() {
+        baseVM.getNavigateToHome().observe(this, navigate -> {
+            if (navigate) {
+                startActivity(new Intent(this, MainActivity.class));
+                finish(); // Cerramos la pantalla base para que no pueda volver atrás
+            }
+        });
+
+        baseVM.getNavigateToLogin().observe(this, navigate -> {
+            if (navigate) {
+                startActivity(new Intent(this, LoginActivity.class));
+                finish();
+            }
+        });
     }
 }
