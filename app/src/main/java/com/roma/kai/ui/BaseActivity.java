@@ -43,14 +43,14 @@ public class BaseActivity extends AppCompatActivity {
     private void setupObservers() {
         baseVM.getNavigateToHome().observe(this, navigate -> {
             if (navigate) {
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(BaseActivity.this, MainActivity.class));
                 finish(); // Cerramos la pantalla base para que no pueda volver atrás
             }
         });
 
         baseVM.getNavigateToLogin().observe(this, navigate -> {
             if (navigate) {
-                startActivity(new Intent(this, LoginActivity.class));
+                startActivity(new Intent(BaseActivity.this, LoginActivity.class));
                 finish();
             }
         });

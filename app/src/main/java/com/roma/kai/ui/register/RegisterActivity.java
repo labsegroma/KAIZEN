@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.roma.kai.R;
 import com.roma.kai.databinding.ActivityRegisterBinding;
+import com.roma.kai.ui.inicio.MainActivity;
 import com.roma.kai.ui.login.LoginActivity;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -33,7 +34,20 @@ public class RegisterActivity extends AppCompatActivity {
             return insets;
         });
 
-        //desarrollar
+        setupObservers();
+        setupListeners();
+    }
+
+    private void setupObservers()  {
+        registerVM.getNavigateToHome().observe(this, navigate -> {
+            if(navigate) {
+                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void setupListeners() {
         binding.btnCrearCuenta.setOnClickListener(v -> {
             registerVM.registrar(
                     binding.etNombre.getText().toString(),

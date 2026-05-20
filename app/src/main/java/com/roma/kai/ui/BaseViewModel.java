@@ -40,7 +40,10 @@ public class BaseViewModel extends AndroidViewModel {
         String token = sessionManager.getToken();
         if (token == null || token.isEmpty()) {
             navigateToLogin.setValue(true);
-            return;
+//            return;
+        } else {
+            //quitar esto hasta cuando tengas una api para verificar la session
+            navigateToHome.setValue(true);
         }
 
 //        Call<Void> call = apiService.verificarSession();

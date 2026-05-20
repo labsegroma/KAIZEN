@@ -1,6 +1,7 @@
 package com.roma.kai.ui.inicio;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,19 +12,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.roma.kai.R;
 import com.roma.kai.databinding.ActivityMainBinding;
+import com.roma.kai.session.SessionManager;
+import com.roma.kai.ui.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+    private MainViewModel mainVM;
     private static final int PERMISO_UBICACION_CODE = 100;
 
     @Override
@@ -32,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        mainVM = new ViewModelProvider(this).get(MainViewModel.class);
 
         setSupportActionBar(binding.appBarMain.toolbar);
 
@@ -53,12 +60,45 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         // Ocultar AppBar y Drawer en el Login
-        navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-            binding.appBarMain.toolbar.setVisibility(View.VISIBLE);
-            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+//        navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+//            binding.appBarMain.toolbar.setVisibility(View.VISIBLE);
+//            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+//        });
+
+        navigationView.setNavigationItemSelectedListener(item -> {
+            if(item.getItemId() == R.id.nav_logout) {
+                showLogoutConfirmation();
+                return true;
+            }
+
+            boolean handled = NavigationUI.onNavDestinationSelected(item, navController);
+
+            if(handled) {
+                binding.drawerLayout.closeDrawers();
+            }
+
+            return handled;
         });
 
         verificarPermisosUbicacion();
+        setupObservers();
+    }
+
+    private void setupObservers() {
+        SessionManager.getInstance(this).getSessionExpired().observe(this, expired -> {
+            if(Boolean.TRUE.equals(expired)) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
+
+    private void showLogoutConfirmation() {
+        Snackbar.make(binding.getRoot(), "¿Desea cerrar la sesión?", Snackbar.LENGTH_LONG)
+                .setAction("Cerrar Sesión", v -> mainVM.logout())
+                .show();
     }
 
     private void verificarPermisosUbicacion() {

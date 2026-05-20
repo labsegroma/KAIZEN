@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.roma.kai.R;
 import com.roma.kai.databinding.ActivityLoginBinding;
+import com.roma.kai.ui.inicio.MainActivity;
 import com.roma.kai.ui.register.RegisterActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -33,7 +34,20 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
-        //desarrollar
+        setupObservers();
+        setupListeners();
+    }
+
+    private void setupObservers() {
+        loginVM.getNavigateToHome().observe(this, navigate -> {
+            if(navigate) {
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                finish();
+            }
+        });
+    }
+
+    private void setupListeners() {
         binding.btnIniciarSesion.setOnClickListener(v -> {
             loginVM.login(
                     binding.etEmail.getText().toString(),
