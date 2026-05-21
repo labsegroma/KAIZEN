@@ -1,30 +1,53 @@
 package com.roma.kai.ui.inicio;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import com.roma.kai.R;
+import com.roma.kai.databinding.FragmentInicioBinding;
+import com.roma.kai.model.Habito;
+import com.roma.kai.ui.habitos.HabitosAdapter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class InicioFragment extends Fragment {
 
+    private FragmentInicioBinding binding;
+
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentInicioBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_inicio, container, false);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        setupHabitosHoy();
+    }
+
+    private void setupHabitosHoy() {
+        List<Habito> habitosHoy = new ArrayList<>();
+        habitosHoy.add(new Habito("Tomar Agua", "Vitalidad", 10, 6, true, R.drawable.ic_gallery_black_24dp));
+        habitosHoy.add(new Habito("Leer", "Mente", 20, 5, false, R.drawable.ic_gallery_black_24dp));
+
+        HabitosAdapter adapter = new HabitosAdapter(habitosHoy, habito -> {
+            Navigation.findNavController(requireView()).navigate(R.id.action_nav_inicio_to_nav_detalle_habito);
+        });
+
+        binding.rvHabitosHoy.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.rvHabitosHoy.setAdapter(adapter);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

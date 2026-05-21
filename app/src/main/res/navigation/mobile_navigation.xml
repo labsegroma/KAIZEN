@@ -6,12 +6,22 @@
     android:label="@string/menu_perfil"
     app:startDestination="@id/nav_inicio">
     <activity
-        android:id="@+id/baseActivity"
+        android:id="@+id/nav_base"
         android:name="com.roma.kai.ui.BaseActivity"
         android:label="activity_base"
         tools:layout="@layout/activity_base" />
     <activity
-        android:id="@+id/mainActivity"
+        android:id="@+id/nav_login"
+        android:name="com.roma.kai.ui.login.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
+    <activity
+        android:id="@+id/nav_register"
+        android:name="com.roma.kai.ui.register.RegisterActivity"
+        android:label="activity_register"
+        tools:layout="@layout/activity_register" />
+    <activity
+        android:id="@+id/nav_main"
         android:name="com.roma.kai.ui.inicio.MainActivity"
         android:label="app_bar_main"
         tools:layout="@layout/app_bar_main" />
@@ -23,7 +33,11 @@
         android:id="@+id/nav_inicio"
         android:name="com.roma.kai.ui.inicio.InicioFragment"
         android:label="@string/menu_inicio"
-        tools:layout="@layout/fragment_inicio" />
+        tools:layout="@layout/fragment_inicio">
+        <action
+            android:id="@+id/action_nav_inicio_to_nav_detalle_habito"
+            app:destination="@id/nav_detalle_habito" />
+    </fragment>
     <fragment
         android:id="@+id/nav_habitos"
         android:name="com.roma.kai.ui.habitos.HabitosFragment"

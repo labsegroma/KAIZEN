@@ -3,7 +3,6 @@ package com.roma.kai.ui.inicio;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -42,8 +41,6 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.appBarMain.toolbar);
 
-
-
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
 
@@ -52,18 +49,29 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = navHostFragment.getNavController();
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_inicio, R.id.nav_perfil)
+                R.id.nav_inicio, R.id.nav_perfil, R.id.nav_habitos, R.id.nav_kai)
                 .setOpenableLayout(drawer)
                 .build();
 
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        // Ocultar AppBar y Drawer en el Login
-//        navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-//            binding.appBarMain.toolbar.setVisibility(View.VISIBLE);
-//            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-//        });
+        // Ocultar AppBar y Drawer en el Login y personalizar icono de retroceso
+        navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+            if (destination.getId() == R.id.nav_login) {
+                binding.appBarMain.toolbar.setVisibility(View.GONE);
+                drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            } else {
+                binding.appBarMain.toolbar.setVisibility(View.VISIBLE);
+                drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+
+                // Personalizar el icono de retroceso si no es un destino de nivel superior
+                boolean isTopLevel = mAppBarConfiguration.getTopLevelDestinations().contains(destination.getId());
+                if (!isTopLevel) {
+                    binding.appBarMain.toolbar.setNavigationIcon(R.drawable.volver_ico);
+                }
+            }
+        });
 
         navigationView.setNavigationItemSelectedListener(item -> {
             if(item.getItemId() == R.id.nav_logout) {
@@ -72,11 +80,9 @@ public class MainActivity extends AppCompatActivity {
             }
 
             boolean handled = NavigationUI.onNavDestinationSelected(item, navController);
-
             if(handled) {
                 binding.drawerLayout.closeDrawers();
             }
-
             return handled;
         });
 

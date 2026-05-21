@@ -62,7 +62,7 @@
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:src="@drawable/triste"
+            android:src="@drawable/bb_enojado"
             android:alpha="0.5" />
 
         <TextView

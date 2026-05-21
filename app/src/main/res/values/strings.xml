@@ -15,6 +15,13 @@
     <string name="menu_inicio">Inicio</string>
     <string name="nav_header_label">Navegación</string>
 
+    <!-- Strings faltantes que causaban error -->
+    <string name="fab_content_description">Botón de acción</string>
+    <string name="menu_settings">Ajustes</string>
+    <string name="menu_transform">Transformar</string>
+    <string name="menu_reflow">Reflujo</string>
+    <string name="menu_slideshow">Presentación</string>
+
     <!-- Pantalla Login -->
     <string name="titulo_login">Iniciar sesión en KAI</string>
     <string name="hint_email">ejemplo@kai.com</string>

@@ -14,7 +14,7 @@
             android:title="@string/menu_habitos" />
         <item
             android:id="@+id/nav_kai"
-            android:icon="@drawable/jugueton"
+            android:icon="@drawable/bb_jugueton_boca_arriba"
             android:title="@string/menu_kai" />
         <item
             android:id="@+id/nav_perfil"

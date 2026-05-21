@@ -8,15 +8,16 @@
     tools:context=".ui.kai.TuKaiFragment">
 
     <!-- Header Section -->
+
     <ImageButton
-        android:id="@+id/btn_back_kai"
+        android:id="@+id/btnBackKai"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/back_button_desc"
-        android:src="@drawable/ic_launcher_foreground"
+        android:src="@drawable/volver_ico"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tint="#1B5E50" />
