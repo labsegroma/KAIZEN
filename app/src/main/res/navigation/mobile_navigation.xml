@@ -5,39 +5,39 @@
     android:id="@+id/mobile_navigation"
     android:label="@string/menu_perfil"
     app:startDestination="@id/nav_inicio">
+
     <activity
         android:id="@+id/nav_base"
         android:name="com.roma.kai.ui.BaseActivity"
         android:label="activity_base"
         tools:layout="@layout/activity_base" />
+
     <activity
         android:id="@+id/nav_login"
         android:name="com.roma.kai.ui.login.LoginActivity"
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
+
     <activity
         android:id="@+id/nav_register"
         android:name="com.roma.kai.ui.register.RegisterActivity"
         android:label="activity_register"
         tools:layout="@layout/activity_register" />
-    <activity
-        android:id="@+id/nav_main"
-        android:name="com.roma.kai.ui.inicio.MainActivity"
-        android:label="app_bar_main"
-        tools:layout="@layout/app_bar_main" />
+
     <fragment
         android:id="@+id/nav_perfil"
         android:name="com.roma.kai.ui.perfil.PerfilFragment"
-        android:label="@string/menu_perfil" />
+        android:label="@string/menu_perfil"
+        tools:layout="@layout/fragment_perfil" />
+
     <fragment
         android:id="@+id/nav_inicio"
         android:name="com.roma.kai.ui.inicio.InicioFragment"
         android:label="@string/menu_inicio"
         tools:layout="@layout/fragment_inicio">
-        <action
-            android:id="@+id/action_nav_inicio_to_nav_detalle_habito"
-            app:destination="@id/nav_detalle_habito" />
+        <!-- Independiente de Detalle Hábito -->
     </fragment>
+
     <fragment
         android:id="@+id/nav_habitos"
         android:name="com.roma.kai.ui.habitos.HabitosFragment"
@@ -50,19 +50,42 @@
             android:id="@+id/action_nav_habitos_to_nav_detalle_habito"
             app:destination="@id/nav_detalle_habito" />
     </fragment>
+
     <fragment
         android:id="@+id/nav_seleccion_habitos"
         android:name="com.roma.kai.ui.habitos.SeleccionHabitosFragment"
-        android:label="Elegir Hábitos"
-        tools:layout="@layout/fragment_seleccion_habitos" />
+        android:label="Elegir Categoría"
+        tools:layout="@layout/fragment_seleccion_habitos">
+        <action
+            android:id="@+id/action_nav_seleccion_habitos_to_nav_lista_habitos_categoria"
+            app:destination="@id/nav_lista_habitos_categoria" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_lista_habitos_categoria"
+        android:name="com.roma.kai.ui.habitos.ListaHabitosCategoriaFragment"
+        android:label="Seleccionar Hábito"
+        tools:layout="@layout/fragment_lista_habitos_categoria">
+        <argument
+            android:name="categoriaNombre"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_nav_lista_habitos_categoria_to_nav_habitos"
+            app:destination="@id/nav_habitos"
+            app:popUpTo="@id/nav_habitos"
+            app:popUpToInclusive="true" />
+    </fragment>
+
     <fragment
         android:id="@+id/nav_detalle_habito"
         android:name="com.roma.kai.ui.habitos.DetalleHabitoFragment"
         android:label="Detalle de Hábito"
         tools:layout="@layout/fragment_detalle_habito" />
+
     <fragment
         android:id="@+id/nav_kai"
         android:name="com.roma.kai.ui.kai.TuKaiFragment"
         android:label="@string/menu_kai"
         tools:layout="@layout/fragment_tu_kai" />
+
 </navigation>

@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient_light_green"
-    tools:context=".ui.habitos.SeleccionHabitosFragment">
+    tools:context=".ui.habitos.ListaHabitosCategoriaFragment">
 
     <!-- Header Section -->
     <ImageButton
-        android:id="@+id/btnBackSeleccion"
+        android:id="@+id/btnBackLista"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -22,7 +22,7 @@
         app:tint="#1B5E50" />
 
     <ImageView
-        android:id="@+id/img_logo_seleccion"
+        android:id="@+id/img_logo_lista"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
@@ -33,44 +33,42 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txt_title_seleccion"
+        android:id="@+id/txt_categoria_nombre_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="#1B5E50"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_logo_lista"
+        tools:text="Salud" />
+
+    <TextView
+        android:id="@+id/txt_title_instruccion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Elegir Hábitos"
+        android:text="Seleccionar Hábito"
         android:textColor="#0D332B"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_logo_seleccion" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_categoria_nombre_header" />
 
-    <TextView
-        android:id="@+id/txt_subtitle_seleccion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Selecciona una categoría para empezar"
-        android:textColor="#546E7A"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_title_seleccion" />
-
-    <!-- RecyclerView for Categories -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_categorias"
+        android:id="@+id/rv_habitos_categoria"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        android:padding="8dp"
+        android:padding="16dp"
         android:clipToPadding="false"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_subtitle_seleccion"
-        tools:listitem="@layout/item_categoria" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_title_instruccion"
+        tools:listitem="@layout/item_habito_seleccion" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.roma.kai.R;
 import com.roma.kai.databinding.FragmentInicioBinding;
@@ -37,8 +36,9 @@ public class InicioFragment extends Fragment {
         habitosHoy.add(new Habito("Tomar Agua", "Vitalidad", 10, 6, true, R.drawable.ic_gallery_black_24dp));
         habitosHoy.add(new Habito("Leer", "Mente", 20, 5, false, R.drawable.ic_gallery_black_24dp));
 
+        // Ya no navegamos al detalle desde el inicio por pedido del usuario
         HabitosAdapter adapter = new HabitosAdapter(habitosHoy, habito -> {
-            Navigation.findNavController(requireView()).navigate(R.id.action_nav_inicio_to_nav_detalle_habito);
+            // Acción desactivada o podrías implementar un check rápido aquí
         });
 
         binding.rvHabitosHoy.setLayoutManager(new LinearLayoutManager(getContext()));

@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import com.roma.kai.R;
 import com.roma.kai.databinding.FragmentSeleccionHabitosBinding;
@@ -28,6 +28,11 @@ public class SeleccionHabitosFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        
+        binding.btnBackSeleccion.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigateUp();
+        });
+
         setupRecyclerView();
     }
 
@@ -41,8 +46,9 @@ public class SeleccionHabitosFragment extends Fragment {
         categorias.add(new Categoria("Bienestar", R.drawable.ic_settings_black_24dp));
 
         CategoriaAdapter adapter = new CategoriaAdapter(categorias, categoria -> {
-            Toast.makeText(getContext(), "Seleccionaste: " + categoria.getNombre(), Toast.LENGTH_SHORT).show();
-            // Aquí se navegaría a la lista de hábitos de esa categoría
+            Bundle bundle = new Bundle();
+            bundle.putString("categoriaNombre", categoria.getNombre());
+            Navigation.findNavController(requireView()).navigate(R.id.action_nav_seleccion_habitos_to_nav_lista_habitos_categoria, bundle);
         });
 
         binding.rvCategorias.setLayoutManager(new GridLayoutManager(getContext(), 2));
