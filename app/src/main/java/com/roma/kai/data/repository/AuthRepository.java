@@ -1,5 +1,7 @@
 package com.roma.kai.data.repository;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -30,18 +32,20 @@ public class AuthRepository {
         call.enqueue(new Callback<ResponseData<TokenDto>>() {
             @Override
             public void onResponse(Call<ResponseData<TokenDto>> call, Response<ResponseData<TokenDto>> response) {
-                if(response.isSuccessful() && response.body() != null) {
+                if(response.isSuccessful() && response.body() != null && response.body().getData() != null) {
                     sessionManager.saveToken(response.body().getData().getToken());
                     callback.onSuccess(response.body().getData());
+                } else if (response.isSuccessful()) {
+                    callback.onError("La respuesta del servidor no contiene datos");
                 } else {
-
                     callback.onError(ApiErrorParser.parseError(response));
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseData<TokenDto>> call, Throwable throwable) {
-                callback.onError("MSG DE ERROR GENERICO PARA EL SISTEMA");
+                Log.e("AuthRepository", "Error de login: " + throwable.getMessage(), throwable);
+                callback.onError("Error de conexión: " + throwable.getMessage());
             }
         });
     }
@@ -51,9 +55,11 @@ public class AuthRepository {
         call.enqueue(new Callback<ResponseData<TokenDto>>() {
             @Override
             public void onResponse(Call<ResponseData<TokenDto>> call, Response<ResponseData<TokenDto>> response) {
-                if(response.isSuccessful() && response.body() != null) {
+                if(response.isSuccessful() && response.body() != null && response.body().getData() != null) {
                     sessionManager.saveToken(response.body().getData().getToken());
                     callback.onSuccess(response.body().getData());
+                } else if (response.isSuccessful()) {
+                    callback.onError("La respuesta del servidor no contiene datos");
                 } else {
                     callback.onError(ApiErrorParser.parseError(response));
                 }
@@ -61,8 +67,8 @@ public class AuthRepository {
 
             @Override
             public void onFailure(Call<ResponseData<TokenDto>> call, Throwable throwable) {
-                //agregar log correcto
-               callback.onError("MSG DE ERROR GENERICO PARA EL SISTEMA");
+                Log.e("AuthRepository", "Error de registro: " + throwable.getMessage(), throwable);
+                callback.onError("Error de conexión: " + throwable.getMessage());
             }
         });
     }
@@ -72,9 +78,11 @@ public class AuthRepository {
         call.enqueue(new Callback<ResponseData<ValidateTokenResponse>>() {
             @Override
             public void onResponse(Call<ResponseData<ValidateTokenResponse>> call, Response<ResponseData<ValidateTokenResponse>> response) {
-                if(response.isSuccessful() && response.body() != null) {
+                if(response.isSuccessful() && response.body() != null && response.body().getData() != null) {
                     sessionManager.saveToken(response.body().getData().getToken());
                     callback.onSuccess(response.body().getData());
+                } else if (response.isSuccessful()) {
+                    callback.onError("La respuesta del servidor no contiene datos");
                 } else {
                     callback.onError(ApiErrorParser.parseError(response));
                 }
@@ -82,7 +90,8 @@ public class AuthRepository {
 
             @Override
             public void onFailure(Call<ResponseData<ValidateTokenResponse>> call, Throwable throwable) {
-                callback.onError("MSG DE ERROR GENERICO PARA EL SISTEMA");
+                Log.e("AuthRepository", "Error de validación: " + throwable.getMessage(), throwable);
+                callback.onError("Error de conexión: " + throwable.getMessage());
             }
         });
     }

@@ -9,12 +9,16 @@ public class ApiErrorParser {
 
     public static String parseError(Response<?> response) {
         try {
-
             if(response.errorBody() == null) {
-                return "Error desconocido";
+                return "Error desconocido (sin cuerpo de error)";
             }
 
             String errorJson = response.errorBody().string();
+
+            // Si no empieza con '{', probablemente no sea JSON (como el HTML de Apache)
+            if (!errorJson.trim().startsWith("{")) {
+                return "Error del servidor (" + response.code() + ")";
+            }
 
             ApiErrorResponse errorResponse = gson.fromJson(errorJson, ApiErrorResponse.class);
 

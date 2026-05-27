@@ -33,4 +33,8 @@ public class PerfilViewModel extends AndroidViewModel {
                 sessionManager.getUser()
         ));
     }
+
+    public void logout() {
+        sessionManager.logout();
+    }
 }

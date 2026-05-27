@@ -30,6 +30,11 @@ public class PerfilFragment extends Fragment {
         perfilVM = new ViewModelProvider(this).get(PerfilViewModel.class);
 
         setupObservers();
+        setupListeners();
+    }
+
+    private void setupListeners() {
+        binding.btnLogout.setOnClickListener(v -> perfilVM.logout());
     }
 
     private void setupObservers() {
