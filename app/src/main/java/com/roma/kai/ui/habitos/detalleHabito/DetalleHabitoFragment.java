@@ -1,4 +1,4 @@
-package com.roma.kai.ui.habitos;
+package com.roma.kai.ui.habitos.detalleHabito;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

@@ -3,25 +3,25 @@ package com.roma.kai.data.repository;
 import com.roma.kai.data.callback.RepositoryCallback;
 import com.roma.kai.data.remote.ApiService;
 import com.roma.kai.data.remote.error.ApiErrorParser;
-import com.roma.kai.model.dto.HomeResponse;
+import com.roma.kai.model.dto.HabitsViewResponse;
 import com.roma.kai.model.response.ResponseData;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class InicioRepository {
+public class HabitosRepository {
     private final ApiService apiService;
 
-    public InicioRepository(ApiService apiService) {
+    public HabitosRepository(ApiService apiService) {
         this.apiService = apiService;
     }
 
-    public void loadHomeView(RepositoryCallback<HomeResponse> callback) {
-        Call<ResponseData<HomeResponse>> call = apiService.getHomeView();
-        call.enqueue(new Callback<ResponseData<HomeResponse>>() {
+    public void loadHabitsView(RepositoryCallback<HabitsViewResponse> callback) {
+        Call<ResponseData<HabitsViewResponse>> call = apiService.getHabitsView();
+        call.enqueue(new Callback<ResponseData<HabitsViewResponse>>() {
             @Override
-            public void onResponse(Call<ResponseData<HomeResponse>> call, Response<ResponseData<HomeResponse>> response) {
+            public void onResponse(Call<ResponseData<HabitsViewResponse>> call, Response<ResponseData<HabitsViewResponse>> response) {
                 if(response.isSuccessful() && response.body() != null) {
                     callback.onSuccess(response.body().getData());
                 } else {
@@ -30,7 +30,7 @@ public class InicioRepository {
             }
 
             @Override
-            public void onFailure(Call<ResponseData<HomeResponse>> call, Throwable throwable) {
+            public void onFailure(Call<ResponseData<HabitsViewResponse>> call, Throwable throwable) {
                 callback.onError("MSG DE ERROR GENERICO PARA EL SISTEMA");
             }
         });

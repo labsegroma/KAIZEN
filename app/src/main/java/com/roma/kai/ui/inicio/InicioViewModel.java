@@ -29,7 +29,7 @@ public class InicioViewModel extends AndroidViewModel {
 
     public LiveData<Event<UiMessage>> getEventUiMessage() { return eventUiMessage; }
 
-    public void loadHome() {
+    public void loadHomeView() {
         inicioUiState.setValue(new InicioUiState(
                 true,
                 false,
@@ -40,7 +40,7 @@ public class InicioViewModel extends AndroidViewModel {
                 Collections.emptyList(),
                 null
         ));
-        inicioRepository.loadHome(new RepositoryCallback<HomeResponse>() {
+        inicioRepository.loadHomeView(new RepositoryCallback<HomeResponse>() {
             @Override
             public void onSuccess(HomeResponse data) {
                 inicioUiState.setValue(new InicioUiState(

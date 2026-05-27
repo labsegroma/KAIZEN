@@ -1,4 +1,4 @@
-package com.roma.kai.ui.habitos;
+package com.roma.kai.ui.habitos.selectCategoria;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import com.roma.kai.R;
 import com.roma.kai.databinding.FragmentSeleccionHabitosBinding;
 import com.roma.kai.model.entity.Categoria;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,5 +1,6 @@
 package com.roma.kai.data.remote;
 
+import com.roma.kai.model.dto.HabitsViewResponse;
 import com.roma.kai.model.dto.HomeResponse;
 import com.roma.kai.model.dto.MeResponse;
 import com.roma.kai.model.dto.TokenDto;
@@ -31,5 +32,9 @@ public interface ApiService {
 
     //api para la vista home "InicioFragment"
     @GET("api/v1/home")
-    Call<ResponseData<HomeResponse>> getHome();
+    Call<ResponseData<HomeResponse>> getHomeView();
+
+    //api para la vista Habitos
+    @GET("api/v1/habits")
+    Call<ResponseData<HabitsViewResponse>> getHabitsView();
 }

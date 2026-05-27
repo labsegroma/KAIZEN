@@ -1,4 +1,4 @@
-package com.roma.kai.ui.habitos;
+package com.roma.kai.ui.habitos.selectCategoria.addHabito;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;

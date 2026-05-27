@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient_light_green"
-    tools:context=".ui.habitos.SeleccionHabitosFragment">
+    tools:context=".ui.habitos.selectCategoria.SeleccionHabitosFragment">
 
     <!-- Header Section -->
     <ImageButton

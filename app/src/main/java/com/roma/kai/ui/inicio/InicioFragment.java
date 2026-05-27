@@ -9,15 +9,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import com.roma.kai.R;
 import com.roma.kai.databinding.FragmentInicioBinding;
-import com.roma.kai.model.entity.Habito;
-import com.roma.kai.ui.habitos.HabitosAdapter;
 import com.roma.kai.utils.UiMessage;
 import com.roma.kai.utils.UiMessageHelper;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class InicioFragment extends Fragment {
     private FragmentInicioBinding binding;
@@ -39,7 +34,7 @@ public class InicioFragment extends Fragment {
         setupObservers();
         setupListeners();
 
-        inicioVM.loadHome();
+        inicioVM.loadHomeView();
     }
 
     private void setupObservers() {
@@ -69,20 +64,6 @@ public class InicioFragment extends Fragment {
         habitosAdapter = new InicioHabitosAdapter();
         binding.rvHabitosHoy.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.rvHabitosHoy.setAdapter(habitosAdapter);
-    }
-
-    private void setupHabitosHoy() {
-        List<Habito> habitosHoy = new ArrayList<>();
-        habitosHoy.add(new Habito("Tomar Agua", "Vitalidad", 10, 6, true, R.drawable.ic_gallery_black_24dp));
-        habitosHoy.add(new Habito("Leer", "Mente", 20, 5, false, R.drawable.ic_gallery_black_24dp));
-
-        // Ya no navegamos al detalle desde el inicio por pedido del usuario
-        HabitosAdapter adapter = new HabitosAdapter(habitosHoy, habito -> {
-            // Acción desactivada o podrías implementar un check rápido aquí
-        });
-
-        binding.rvHabitosHoy.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.rvHabitosHoy.setAdapter(adapter);
     }
 
     @Override

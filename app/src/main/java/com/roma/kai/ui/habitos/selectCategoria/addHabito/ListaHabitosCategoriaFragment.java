@@ -1,4 +1,4 @@
-package com.roma.kai.ui.habitos;
+package com.roma.kai.ui.habitos.selectCategoria.addHabito;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.roma.kai.R;
 import com.roma.kai.databinding.FragmentListaHabitosCategoriaBinding;
 import com.roma.kai.model.entity.Habito;
+
 import java.util.ArrayList;
 import java.util.List;
 
