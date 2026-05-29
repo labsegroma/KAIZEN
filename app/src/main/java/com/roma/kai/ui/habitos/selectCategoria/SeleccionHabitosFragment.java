@@ -101,7 +101,7 @@ public class SeleccionHabitosFragment extends Fragment {
         seleccionHabitosVM.getEventUiMessage().observe(
                 getViewLifecycleOwner(),
                 event -> {
-
+                    if(event == null) return;
                     UiMessage message =
                             event.obtenerContenidoSiNoManejado();
 

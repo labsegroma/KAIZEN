@@ -13,6 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.roma.kai.R;
 import com.roma.kai.databinding.FragmentHabitosBinding;
 import com.roma.kai.model.entity.Habito;
+import com.roma.kai.utils.UiMessage;
+import com.roma.kai.utils.UiMessageHelper;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -78,6 +81,25 @@ public class HabitosFragment extends Fragment {
                 }
             }
         });
+        habitosVM.getEventUiMessage().observe(
+                getViewLifecycleOwner(),
+                event -> {
+
+                    if(event == null) return;
+
+                    UiMessage message =
+                            event.obtenerContenidoSiNoManejado();
+
+                    if(message != null) {
+
+                        UiMessageHelper.showMessage(
+                                binding.getRoot(),
+                                requireContext(),
+                                message
+                        );
+                    }
+                }
+        );
     }
 
     @Override

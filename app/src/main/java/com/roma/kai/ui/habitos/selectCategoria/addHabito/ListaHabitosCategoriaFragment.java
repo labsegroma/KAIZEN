@@ -70,8 +70,12 @@ public class ListaHabitosCategoriaFragment extends Fragment {
         });
 
         listaHabitosVM.getEventUiMessage().observe(getViewLifecycleOwner(), event -> {
-            UiMessage message = event.obtenerContenidoSiNoManejado();
-            if (message != null) {
+            if(event == null) return;
+
+            UiMessage message =
+                    event.obtenerContenidoSiNoManejado();
+
+            if(message != null){
                 UiMessageHelper.showMessage(binding.getRoot(), requireContext(), message);
             }
         });
