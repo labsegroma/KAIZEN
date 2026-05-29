@@ -34,18 +34,17 @@ public class MainViewModel extends AndroidViewModel {
     public LiveData<Event<UiMessage>> getEventUiMessage() { return eventUiMessage; }
 
     public void loadMe() {
-        mainUiState.setValue(new MainUiState(true, false));
+        mainUiState.setValue(new MainUiState(true, false, null));
 
         mainRepository.loadMe(new RepositoryCallback<MeResponse>() {
             @Override
             public void onSuccess(MeResponse data) {
-//                mainUiState.setValue(new MainUiState(false, true));
-//                eventUiMessage.setValue(new Event<>(new UiMessage("CARGA COMPLETA", UiMessage.Type.SUCCESS)));
+                mainUiState.setValue(new MainUiState(false, true, data.getUsuario()));
             }
 
             @Override
             public void onError(String error) {
-//                mainUiState.setValue(new MainUiState(false, false));
+                mainUiState.setValue(new MainUiState(false, false, null));
                 eventUiMessage.setValue(new Event<>(new UiMessage(error, UiMessage.Type.ERROR)));
             }
         });

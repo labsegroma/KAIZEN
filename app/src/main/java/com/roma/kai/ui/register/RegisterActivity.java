@@ -59,6 +59,18 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void setupListeners() {
+        setSupportActionBar(binding.toolbarRegister);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
+        binding.toolbarRegister.setNavigationOnClickListener(v -> {
+            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        });
+
         binding.btnCrearCuenta.setOnClickListener(v -> {
             registerVM.registrar(
                     binding.etNombre.getText().toString(),
@@ -68,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
             );
         });
 
-        binding.btnBack.setOnClickListener(v -> {
+        binding.txtBackToLogin.setOnClickListener(v -> {
             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();

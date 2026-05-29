@@ -8,6 +8,8 @@ public class DailyHabitSummary {
     private String nombre;
     private String categoria;
     private boolean completado;
+    @SerializedName("imagen_habito")
+    private String imagenHabito;
 
     public String getId() {
         return id;
@@ -23,5 +25,9 @@ public class DailyHabitSummary {
 
     public boolean isCompletado() {
         return completado;
+    }
+
+    public String getImagenHabito() {
+        return imagenHabito;
     }
 }

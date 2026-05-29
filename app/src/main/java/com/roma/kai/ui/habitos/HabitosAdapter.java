@@ -7,9 +7,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
+import com.bumptech.glide.Glide;
 import com.roma.kai.databinding.ItemHabitoBinding;
 import com.roma.kai.model.dto.UserHabitResponse;
-import com.roma.kai.model.entity.Habito;
+import com.roma.kai.utils.ImageUi;
 import java.util.List;
 import java.util.Objects;
 
@@ -80,12 +81,22 @@ public class HabitosAdapter extends ListAdapter<UserHabitResponse, HabitosAdapte
 
             binding.txtHabitoRacha.setText("Racha: " + habito.getRachaActual() + " días");
 
-            // Icono
-//            if (habito.getIconResId() != 0) {
-//                binding.imgHabitoIcon.setImageResource(
-//                        habito.getIconResId()
-//                );
-//            }
+            // Icono con arquitectura centralizada ImageUi
+            String imgData = habito.getImagenHabito();
+            if (imgData == null || !imgData.startsWith("http")) {
+                // Si no hay imagen o es clave local, usamos el nombre de la categoria como clave secundaria
+                String key = (imgData != null && !imgData.isEmpty()) ? imgData : habito.getCategoria();
+                
+                Glide.with(itemView.getContext())
+                        .load(ImageUi.getDrawable(key))
+                        .into(binding.imgHabitoIcon);
+            } else {
+                // Es URL remota
+                Glide.with(itemView.getContext())
+                        .load(imgData)
+                        .placeholder(com.roma.kai.R.drawable.ic_gallery_black_24dp)
+                        .into(binding.imgHabitoIcon);
+            }
 
             itemView.setOnClickListener(v ->
                     listener.onHabitoClick(habito)

@@ -67,6 +67,9 @@
         android:label="Seleccionar Hábito"
         tools:layout="@layout/fragment_lista_habitos_categoria">
         <argument
+            android:name="categoryId"
+            app:argType="string" />
+        <argument
             android:name="categoriaNombre"
             app:argType="string" />
         <action

@@ -7,11 +7,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.roma.kai.R;
 import com.roma.kai.databinding.FragmentListaHabitosCategoriaBinding;
-import com.roma.kai.model.entity.Habito;
+import com.roma.kai.model.dto.HabitoCatalogoDto;
+import com.roma.kai.utils.UiMessage;
+import com.roma.kai.utils.UiMessageHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +22,9 @@ import java.util.List;
 public class ListaHabitosCategoriaFragment extends Fragment {
 
     private FragmentListaHabitosCategoriaBinding binding;
+    private ListaHabitosCategoriaViewModel listaHabitosVM;
+    private HabitosSeleccionAdapter adapter;
+    private List<HabitoCatalogoDto> habitosList = new ArrayList<>();
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -29,34 +35,52 @@ public class ListaHabitosCategoriaFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        listaHabitosVM = new ViewModelProvider(this).get(ListaHabitosCategoriaViewModel.class);
 
-        String categoria = "Categoría";
+        String categoryId = null;
+        String categoriaNombre = "Categoría";
         if (getArguments() != null) {
-            categoria = getArguments().getString("categoriaNombre", "Categoría");
+            categoryId = getArguments().getString("categoryId", null);
+            categoriaNombre = getArguments().getString("categoriaNombre", "Categoría");
         }
         
-        // Mostrar el nombre de la categoría debajo del logo
-        binding.txtCategoriaNombreHeader.setText(categoria);
+        binding.txtCategoriaNombreHeader.setText(categoriaNombre);
 
-        binding.btnBackLista.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigateUp();
-        });
+        setupRecyclerView();
+        setupObservers();
 
-        setupRecyclerView(categoria);
+        if (categoryId != null) {
+            listaHabitosVM.loadHabitos(categoryId);
+        }
     }
 
-    private void setupRecyclerView(String categoria) {
-        // Lista de hábitos simulada filtrada por la categoría seleccionada
-        List<Habito> habitosFiltrados = new ArrayList<>();
-        habitosFiltrados.add(new Habito("Beber 2L de agua", categoria, 10, 0, false, 0));
-        habitosFiltrados.add(new Habito("Caminar 30 min", categoria, 15, 0, false, 0));
-        habitosFiltrados.add(new Habito("Meditación matutina", categoria, 20, 0, false, 0));
+    private void setupObservers() {
+        listaHabitosVM.getUiState().observe(getViewLifecycleOwner(), uiState -> {
+            binding.progressBarHabitosCatalogo.setVisibility(uiState.isLoading() ? View.VISIBLE : View.GONE);
+            
+            if (uiState.isSuccess()) {
+                habitosList.clear();
+                habitosList.addAll(uiState.getHabitos());
+                adapter.notifyDataSetChanged();
+            }
 
-        // Usamos el adaptador con CheckBox
-        HabitosSeleccionAdapter adapter = new HabitosSeleccionAdapter(habitosFiltrados, (habito, isChecked) -> {
-            if (isChecked) {
-                // Al marcar el check, simulamos que se agrega y volvemos a Mis Hábitos
+            if (uiState.isSelectSuccess()) {
                 Navigation.findNavController(requireView()).navigate(R.id.action_nav_lista_habitos_categoria_to_nav_habitos);
+            }
+        });
+
+        listaHabitosVM.getEventUiMessage().observe(getViewLifecycleOwner(), event -> {
+            UiMessage message = event.obtenerContenidoSiNoManejado();
+            if (message != null) {
+                UiMessageHelper.showMessage(binding.getRoot(), requireContext(), message);
+            }
+        });
+    }
+
+    private void setupRecyclerView() {
+        adapter = new HabitosSeleccionAdapter(habitosList, (habito, isChecked) -> {
+            if (isChecked) {
+                listaHabitosVM.seleccionarHabito(habito.getId());
             }
         });
 

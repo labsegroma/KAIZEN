@@ -3,24 +3,41 @@ package com.roma.kai.ui.habitos.selectCategoria;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
+import com.bumptech.glide.Glide;
 import com.roma.kai.databinding.ItemCategoriaBinding;
-import com.roma.kai.model.entity.Categoria;
-import java.util.List;
+import com.roma.kai.model.dto.CategoriaDto;
+import com.roma.kai.utils.ImageUi;
 
-public class CategoriaAdapter extends RecyclerView.Adapter<CategoriaAdapter.CategoriaViewHolder> {
+import java.util.Objects;
 
-    private final List<Categoria> categorias;
+public class CategoriaAdapter extends ListAdapter<CategoriaDto, CategoriaAdapter.CategoriaViewHolder> {
+
     private final OnCategoriaClickListener listener;
 
     public interface OnCategoriaClickListener {
-        void onCategoriaClick(Categoria categoria);
+        void onCategoriaClick(CategoriaDto categoria);
     }
 
-    public CategoriaAdapter(List<Categoria> categorias, OnCategoriaClickListener listener) {
-        this.categorias = categorias;
+    public CategoriaAdapter(OnCategoriaClickListener listener) {
+        super(DIFF_CALLBACK);
         this.listener = listener;
     }
+
+    private static final DiffUtil.ItemCallback<CategoriaDto> DIFF_CALLBACK = new DiffUtil.ItemCallback<CategoriaDto>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull CategoriaDto oldItem, @NonNull CategoriaDto newItem) {
+            return Objects.equals(oldItem.getId(), newItem.getId());
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull CategoriaDto oldItem, @NonNull CategoriaDto newItem) {
+            return Objects.equals(oldItem.getNombre(), newItem.getNombre()) &&
+                   Objects.equals(oldItem.getImagenCategoria(), newItem.getImagenCategoria());
+        }
+    };
 
     @NonNull
     @Override
@@ -32,24 +49,34 @@ public class CategoriaAdapter extends RecyclerView.Adapter<CategoriaAdapter.Cate
 
     @Override
     public void onBindViewHolder(@NonNull CategoriaViewHolder holder, int position) {
-        Categoria categoria = categorias.get(position);
-        holder.binding.txtCategoriaNombre.setText(categoria.getNombre());
-        if (categoria.getIconResId() != 0) {
-            holder.binding.imgCategoriaIcon.setImageResource(categoria.getIconResId());
-        }
-        holder.itemView.setOnClickListener(v -> listener.onCategoriaClick(categoria));
+        holder.bind(getItem(position), listener);
     }
 
-    @Override
-    public int getItemCount() {
-        return categorias.size();
-    }
+    public static class CategoriaViewHolder extends RecyclerView.ViewHolder {
+        private final ItemCategoriaBinding binding;
 
-    static class CategoriaViewHolder extends RecyclerView.ViewHolder {
-        ItemCategoriaBinding binding;
         public CategoriaViewHolder(ItemCategoriaBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
+        }
+
+        public void bind(CategoriaDto categoria, OnCategoriaClickListener listener) {
+            binding.txtCategoriaNombre.setText(categoria.getNombre());
+
+            String imgData = categoria.getImagenCategoria();
+
+            if (imgData == null || !imgData.startsWith("http")) {
+                String key = (imgData != null && !imgData.isEmpty()) ? imgData : categoria.getNombre();
+                Glide.with(itemView.getContext())
+                        .load(ImageUi.getDrawable(key))
+                        .into(binding.imgCategoriaIcon);
+            } else {
+                Glide.with(itemView.getContext())
+                        .load(imgData)
+                        .into(binding.imgCategoriaIcon);
+            }
+
+            itemView.setOnClickListener(v -> listener.onCategoriaClick(categoria));
         }
     }
 }

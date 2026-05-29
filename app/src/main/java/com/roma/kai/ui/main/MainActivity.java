@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -60,6 +63,23 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+        // Forzar iconos personalizados en el Toolbar
+        navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+            if (mAppBarConfiguration.getTopLevelDestinations().contains(destination.getId())) {
+                binding.appBarMain.toolbar.setNavigationIcon(R.drawable.icons8_menu);
+            } else {
+                binding.appBarMain.toolbar.setNavigationIcon(R.drawable.volver_ico);
+            }
+        });
+
+        // Estilo rojo para el menu de logout
+        android.view.MenuItem logoutItem = navigationView.getMenu().findItem(R.id.nav_logout);
+        if (logoutItem != null) {
+            SpannableString spanString = new SpannableString(logoutItem.getTitle().toString());
+            spanString.setSpan(new ForegroundColorSpan(ContextCompat.getColor(this, R.color.kai_logout_red)), 0, spanString.length(), 0);
+            logoutItem.setTitle(spanString);
+        }
+
         navigationView.setNavigationItemSelectedListener(item -> {
             if(item.getItemId() == R.id.nav_logout) {
                 showLogoutConfirmation();
@@ -91,10 +111,20 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //USAR CUANDO SE NECESITE!!
-//        mainVM.getMainUiState().observe(this, mainUiState -> {
-//            desarrollar  cuando se necesite
-//        });
-//
+        mainVM.getMainUiState().observe(this, mainUiState -> {
+            if (mainUiState.isSuccess() && mainUiState.getUsuario() != null) {
+                View headerView = binding.navView.getHeaderView(0);
+                TextView tvName = headerView.findViewById(R.id.tv_nav_user_name);
+                TextView tvLevel = headerView.findViewById(R.id.tv_nav_user_level);
+                TextView tvXp = headerView.findViewById(R.id.tv_nav_user_xp);
+
+                tvName.setText(mainUiState.getUsuario().getNombre());
+                // Por ahora nivel y xp base, se puede mejorar con mas datos del backend
+                tvLevel.setText("Nivel 1"); 
+                tvXp.setText("0 XP");
+            }
+        });
+
         mainVM.getEventUiMessage().observe(this, eventUiMessage -> {
             UiMessage uiMessage = eventUiMessage.obtenerContenidoSiNoManejado();
             if(uiMessage == null) return;

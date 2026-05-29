@@ -9,7 +9,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.bumptech.glide.Glide;
 import com.roma.kai.databinding.FragmentInicioBinding;
+import com.roma.kai.utils.ImageUi;
 import com.roma.kai.utils.UiMessage;
 import com.roma.kai.utils.UiMessageHelper;
 
@@ -41,11 +44,40 @@ public class InicioFragment extends Fragment {
         inicioVM.getInicioUiState().observe(getViewLifecycleOwner(), inicioUiState -> {
             if(inicioUiState == null) return;
 
-            //desarrollar
+            // Gestión de carga
+            if (inicioUiState.isLoading()) {
+                binding.progressBarHome.setVisibility(View.VISIBLE);
+                binding.layoutHomeContent.setVisibility(View.INVISIBLE);
+            } else {
+                binding.progressBarHome.setVisibility(View.GONE);
+                binding.layoutHomeContent.setVisibility(View.VISIBLE);
+            }
+
             if(inicioUiState.isSuccess()) {
                 habitosAdapter.setHabitos(inicioUiState.getHabitosDiarios());
                 binding.tvHomeXp.setText(inicioUiState.getXpTotal() + " XP");
                 binding.tvHomeRacha.setText(inicioUiState.getRachaActual() + " Días");
+                
+                // Mensaje motivacional
+                if (inicioUiState.getMensajeMotivacional() != null && !inicioUiState.getMensajeMotivacional().isEmpty()) {
+                    binding.cardMessage.setVisibility(View.VISIBLE);
+                    binding.tvMotivationalMessage.setText(inicioUiState.getMensajeMotivacional());
+                } else {
+                    binding.cardMessage.setVisibility(View.GONE);
+                }
+
+                // Imagen de Kai con Resolver ImageUi
+                if (inicioUiState.getEstadoKai() != null) {
+                    String imgKai = inicioUiState.getEstadoKai().getImageKai();
+                    
+                    if (imgKai != null && imgKai.startsWith("http")) {
+                        Glide.with(this).load(imgKai).into(binding.imgKaiHome);
+                    } else {
+                        // Usamos el resolver para el estado emocional de Kai
+                        String key = (imgKai != null) ? imgKai : inicioUiState.getEstadoKai().getEstadoActual();
+                        Glide.with(this).load(ImageUi.getDrawable(key)).into(binding.imgKaiHome);
+                    }
+                }
             }
         });
 

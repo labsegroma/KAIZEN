@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="kai_primary">#1B5E50</color>
+    <color name="kai_header_green">#1F5C53</color>
     <color name="kai_primary_variant">#14473D</color>
     <color name="kai_on_primary">#FFFFFF</color>
     <color name="kai_background">#F5FDFB</color>
     <color name="kai_card_bg">#FFFFFF</color>
-    <color name="kai_text_main">#1B5E50</color>
-    <color name="kai_text_secondary">#757575</color>
+    <color name="kai_text_main">#0D332B</color>
+    <color name="kai_text_secondary">#546E7A</color>
     <color name="kai_accent">#39A18E</color>
     <color name="purple_200">#CE93D8</color>
     <color name="purple_500">#9C27B0</color>
@@ -21,4 +22,11 @@
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Paleta KAI Wellness -->
+    <color name="kai_primary_very_soft">#F1F8F7</color>
+    <color name="kai_primary_soft">#E0F2F1</color>
+    <color name="kai_primary_selected">#B2DFDB</color>
+    <color name="kai_logout_red">#E57373</color>
+    <color name="divider_color">#E0E0E0</color>
 </resources>

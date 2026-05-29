@@ -24,10 +24,6 @@ public class DetalleHabitoFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.btnBackDetalle.setOnClickListener(v -> 
-            Navigation.findNavController(v).navigateUp()
-        );
-        
         // Aquí se recibirían los argumentos del hábito seleccionado para mostrar su info
     }
 

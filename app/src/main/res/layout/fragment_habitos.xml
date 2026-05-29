@@ -7,72 +7,100 @@
     android:background="@drawable/bg_gradient_light_green"
     tools:context=".ui.habitos.HabitosFragment">
 
-    <!-- Header Logo -->
-    <ImageView
-        android:id="@+id/img_logo_habitos"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/logo_verde_removebg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txt_title_mis_habitos"
+    <!-- ProgressBar de carga -->
+    <ProgressBar
+        android:id="@+id/progress_bar_habitos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Mis Hábitos"
-        android:textColor="#0D332B"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_logo_habitos" />
-
-    <!-- List of Habits -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_mis_habitos"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:clipToPadding="false"
-        android:padding="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_title_mis_habitos"
-        tools:listitem="@layout/item_habito" />
-
-    <!-- Empty State (Hidden by default) -->
-    <LinearLayout
-        android:id="@+id/layout_empty_habitos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_title_mis_habitos">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/bb_enojado"
-            android:alpha="0.5" />
+    <!-- Contenedor de contenido real -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_habitos_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <!-- Contenedor del Header -->
+
+        <!-- List of Habits -->
+        <LinearLayout
+            android:id="@+id/layout_header_habitos"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Aún no tienes hábitos"
-            android:textColor="#757575"
-            android:textSize="18sp" />
-    </LinearLayout>
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="150dp"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp">
+
+            <ImageView
+                android:id="@+id/img_logo_habitos"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/app_name"
+                android:scaleType="fitCenter"
+                android:src="@drawable/logo_verde_removebg" />
+
+            <TextView
+                android:id="@+id/txt_title_mis_habitos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="Mis Hábitos"
+                android:textColor="#0D332B"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_mis_habitos"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:clipToPadding="false"
+            android:padding="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_header_habitos"
+            tools:listitem="@layout/item_habito" />
+
+        <!-- Empty State (Hidden by default) -->
+        <LinearLayout
+            android:id="@+id/layout_empty_habitos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_header_habitos">
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:alpha="0.5"
+                tools:src="@drawable/bb_enojado" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Aún no tienes hábitos"
+                android:textColor="#757575"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Floating Action Button to add new habits -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton

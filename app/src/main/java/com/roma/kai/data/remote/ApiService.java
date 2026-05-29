@@ -1,5 +1,7 @@
 package com.roma.kai.data.remote;
 
+import com.roma.kai.model.dto.CategoriaDto;
+import com.roma.kai.model.dto.HabitoCatalogoDto;
 import com.roma.kai.model.dto.HabitsViewResponse;
 import com.roma.kai.model.dto.HomeResponse;
 import com.roma.kai.model.dto.MeResponse;
@@ -7,12 +9,16 @@ import com.roma.kai.model.dto.TokenDto;
 import com.roma.kai.model.dto.ValidateTokenResponse;
 import com.roma.kai.model.request.LoginRequest;
 import com.roma.kai.model.request.RegisterRequest;
+import com.roma.kai.model.request.SelectHabitRequest;
 import com.roma.kai.model.response.ResponseData;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface ApiService {
 
@@ -37,4 +43,14 @@ public interface ApiService {
     //api para la vista Habitos
     @GET("api/v1/habits")
     Call<ResponseData<HabitsViewResponse>> getHabitsView();
+
+    // Categorías y catálogo de hábitos
+    @GET("api/v1/habits/categories")
+    Call<ResponseData<List<CategoriaDto>>> getCategories();
+
+    @GET("api/v1/habits/catalog")
+    Call<ResponseData<List<HabitoCatalogoDto>>> getCatalog(@Query("category_id") String categoryId);
+
+    @POST("api/v1/habits/select")
+    Call<ResponseData<Void>> selectHabit(@Body SelectHabitRequest request);
 }

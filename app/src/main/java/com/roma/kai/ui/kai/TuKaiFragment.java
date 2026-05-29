@@ -24,10 +24,6 @@ public class TuKaiFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.btnBackKai.setOnClickListener(v -> 
-            Navigation.findNavController(v).navigateUp()
-        );
-
         // Aquí se cargaría el estado actual de Kai (etapa, vigor, personalidad, etc.)
     }
 

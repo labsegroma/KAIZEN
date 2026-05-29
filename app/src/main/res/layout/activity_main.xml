@@ -28,8 +28,18 @@ across the layout configurations
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
+            android:background="@color/white"
             app:headerLayout="@layout/nav_header_main"
-            app:menu="@menu/navigation_drawer" />
+            app:menu="@menu/navigation_drawer"
+            app:itemIconTint="@null"
+            app:itemTextColor="@color/nav_item_color_state"
+            app:itemBackground="@drawable/nav_item_selected_bg"
+            app:itemHorizontalPadding="20dp"
+            app:itemIconPadding="16dp"
+            app:itemVerticalPadding="6dp"
+            app:itemMaxLines="1"
+            app:itemTextAppearanceActive="@style/NavActiveText"
+            app:itemTextAppearanceInactive="@style/NavInactiveText" />
 
     </androidx.drawerlayout.widget.DrawerLayout>
 </FrameLayout>

@@ -7,56 +7,18 @@
     android:background="@drawable/bg_gradient_light_green"
     tools:context=".ui.habitos.selectCategoria.addHabito.ListaHabitosCategoriaFragment">
 
-    <!-- Header Section -->
-    <ImageButton
-        android:id="@+id/btnBackLista"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/back_button_desc"
-        android:src="@drawable/volver_ico"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="#1B5E50" />
-
-    <ImageView
-        android:id="@+id/img_logo_lista"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/logo_verde_removebg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/txt_categoria_nombre_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:textColor="#1B5E50"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_logo_lista"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="Salud" />
-
-    <TextView
-        android:id="@+id/txt_title_instruccion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Seleccionar Hábito"
-        android:textColor="#0D332B"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_categoria_nombre_header" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_habitos_categoria"
@@ -68,7 +30,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_title_instruccion"
+        app:layout_constraintTop_toBottomOf="@+id/txt_categoria_nombre_header"
         tools:listitem="@layout/item_habito_seleccion" />
+
+    <ProgressBar
+        android:id="@+id/progressBarHabitosCatalogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_categoria_nombre_header" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

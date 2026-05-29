@@ -58,12 +58,34 @@ public class HabitosFragment extends Fragment {
         habitosVM.getHabitosUiState().observe(getViewLifecycleOwner(), habitosUiState -> {
             if(habitosUiState == null) return;
 
+            // Mostrar u ocultar ProgressBar y Contenido
+            if (habitosUiState.isLoading()) {
+                binding.progressBarHabitos.setVisibility(View.VISIBLE);
+                binding.layoutHabitosContent.setVisibility(View.INVISIBLE);
+            } else {
+                binding.progressBarHabitos.setVisibility(View.GONE);
+                binding.layoutHabitosContent.setVisibility(View.VISIBLE);
+            }
+
             if(habitosUiState.isSuccess()) {
-                if(!habitosUiState.getHabitosUsuario().isEmpty()) {
+                if (habitosUiState.getHabitosUsuario() != null && !habitosUiState.getHabitosUsuario().isEmpty()) {
+                    binding.rvMisHabitos.setVisibility(View.VISIBLE);
+                    binding.layoutEmptyHabitos.setVisibility(View.GONE);
                     habitosAdapter.submitList(habitosUiState.getHabitosUsuario());
+                } else {
+                    binding.rvMisHabitos.setVisibility(View.GONE);
+                    binding.layoutEmptyHabitos.setVisibility(View.VISIBLE);
                 }
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (habitosVM != null) {
+            habitosVM.loadHabitosView();
+        }
     }
 
     @Override

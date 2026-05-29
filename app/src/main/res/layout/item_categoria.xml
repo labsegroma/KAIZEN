@@ -13,14 +13,14 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="16dp">
 
         <ImageView
             android:id="@+id/img_categoria_icon"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/ic_launcher_foreground"
-            app:tint="#1B5E50" />
+            android:layout_width="205dp"
+            android:layout_height="120dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_launcher_foreground" />
 
         <TextView
             android:id="@+id/txt_categoria_nombre"
